@@ -20,5 +20,5 @@ module "logicApp" {
 }
 
 module "aadApplications" {
-  source = "./modules/application"  
+  source = "./modules/applications"  
 }
