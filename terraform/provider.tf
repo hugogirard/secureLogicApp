@@ -8,3 +8,11 @@ provider "azurerm" {
 
   features {}
 }
+
+provider "azuread" {
+  version = "=1.1.0"
+
+  client_id     = var.clientId
+  client_secret = var.clientSecret
+  tenant_id     = var.tenantID
+}
