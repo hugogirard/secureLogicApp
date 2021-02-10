@@ -11,6 +11,13 @@ resource "azurerm_logic_app_workflow" "logicWorkflowb" {
     
 }
 
+resource "azurerm_template_deployment" "arm_logic_app_b" {
+    name                    = azurerm_logic_app_workflow.logicWorkflowb.name
+    resource_group_name     = azurerm_logic_app_workflow.logicWorkflowb.location
+    template_body           = file("arm/workflowb.json")
+    deployment_mode         = "Incremental"
+}
+
 resource "azurerm_logic_app_workflow" "logicWorkflowc" {
     name                    = "logicApp-workflow-c"
     location                = var.location
