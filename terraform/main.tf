@@ -18,3 +18,7 @@ module "logicApp" {
   location          = var.location
   rgName            = azurerm_resource_group.rg.name
 }
+
+module "aadApplications" {
+  source = "./modules/application"  
+}
