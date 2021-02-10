@@ -1,0 +1,35 @@
+name: Deploy
+
+on:
+  push:
+    branches: 
+      - main
+    paths:
+      - 'bicep/*.bicep'
+  workflow_dispatch:
+  
+env:
+  location: eastus
+  resourceGroupName: logicapp-secure-apim-rg    
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Azure Login
+        uses: Azure/login@v1.1
+        with:          
+          creds: ${{ secrets.SP_AZURE_CREDENTIALS }}          
+          enable-AzPSSession: false
+        
+      - name: Bicep Build
+        uses: aliencube/bicep-build-actions@v0.1
+        with:
+          files: bicep/main.bicep          
+          
+      - name: Create Resource Group
+        run: |
+         az group create -n ${{ env.resourceGroupName }} -l ${{ env.LOCATION }}            
