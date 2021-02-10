@@ -7,7 +7,7 @@ param audience string {
   secure: true
 }
 
-resource workflowb 'Microsoft.Logic/workflows@2019-05-01' = {
+resource workflowb 'Microsoft.Logic/workflows@2017-07-01' = {
    name: 'logicApp-workflow-b'
    location: location
    properties: {
