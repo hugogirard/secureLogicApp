@@ -51,3 +51,11 @@ module logicappA './modules/logicApp/logicappA.bicep' = {
     uri: '${apim.outputs.url}/${apis.outputs.apiPath}'
   }
 }
+
+module logicappC './modules/logicApp/logicappC.bicep' = {
+  name: 'logicappC'
+  params: {
+    location: location
+    uri: '${apim.outputs.url}/${apis.outputs.apiPath}'
+  }
+}
