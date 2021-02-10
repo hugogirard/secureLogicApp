@@ -6,6 +6,7 @@ resource logicBApi 'Microsoft.ApiManagement/service/apis@2019-12-01' = {
   properties: {
     displayName: 'Workflow for logic app B'
     description: 'Workflow for logic app B'
+    subscriptionRequired: false
     serviceUrl: apiUrl
     path: 'logicapp'
     protocols: [
@@ -23,3 +24,5 @@ resource postOperation 'Microsoft.ApiManagement/service/apis/operations@2017-03-
     description: 'Call the logic app'
   }
 }
+
+output apiPath string = logicBApi.properties.path

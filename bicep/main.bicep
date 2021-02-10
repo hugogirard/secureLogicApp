@@ -7,7 +7,12 @@ param tenantId string {
 }
 param publisherName string
 param publisherEmail string
-
+param clientId string {
+  secure: true
+}
+param secret string {
+  secure: true
+}
 
 module apim './modules/apim/apim.bicep' = {
   name: 'apim'
@@ -32,5 +37,17 @@ module apis './modules/apis/apis.bicep' = {
   params: {
     apimName: apim.outputs.apiName
     apiUrl: logicappB.outputs.endpoint
+  }
+}
+
+module logicappA './modules/logicApp/logicappA.bicep' = {
+  name: 'logicappA'
+  params: {
+    location: location
+    tenantId: tenantId
+    audience: audience
+    clientId: clientId
+    secret: secret
+    uri: '${apim.outputs.url}/${apis.outputs.apiPath}'
   }
 }

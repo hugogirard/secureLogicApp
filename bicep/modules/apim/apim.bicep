@@ -21,3 +21,4 @@ resource apim 'Microsoft.ApiManagement/service@2019-12-01' = {
 
 output publicIp string = apim.properties.publicIPAddresses[0]
 output apiName string = apim.name
+output url string = apim.properties.gatewayUrl

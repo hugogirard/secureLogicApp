@@ -44,6 +44,8 @@ jobs:
           tenantId: ${{ secrets.TENANT_ID }}
           publisherName: ${{ secrets.PUBLISHER_NAME }}
           publisherEmail: ${{ secrets.PUBLISHER_EMAIL }}
+          clientId: ${{ secrets.CLIENT_ID }}
+          secret: ${{ secrets.SECRET }}
 
       - name: Deploy Infra
         id: deployapim

@@ -16,6 +16,12 @@
         },
         "publisherEmail": {
             "value": "__publisherEmail__"
+        },
+        "clientId": {
+            "value": "__clientId__"
+        },
+        "secret": {
+            "value": "__secret__"
         }
     }
 }
