@@ -12,3 +12,9 @@ module "apim" {
   publisherName     = var.publisherName
   publisherEmail    = var.publisherEmail
 }
+
+module "logicApp" {
+  source            = "./modules/logicapp"
+  location          = var.location
+  rgName            = azurerm_resource_group.rg.name
+}
