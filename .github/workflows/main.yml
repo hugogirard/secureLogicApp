@@ -1,4 +1,4 @@
-name: Deploy
+name: Deploy Infra
 
 on:
   push:
@@ -33,3 +33,28 @@ jobs:
       - name: Create Resource Group
         run: |
          az group create -n ${{ env.resourceGroupName }} -l ${{ env.LOCATION }}            
+
+      - name: Replace tokens
+        uses: cschleiden/replace-tokens@v1.0
+        with:        
+          tokenPrefix: __        
+          tokenSuffix: __        
+          files: '["bicep/main.parameters.json"]'
+        env:
+          location: ${{ env.location }}
+          audience: ${{ secrets.AUDIENCE }}
+          tenantId: ${{ secrets.TENANT_ID }}
+          publisherName: ${{ secrets.PUBLISHER_NAME }}
+          publisherEmail: ${{ secrets.PUBLISHER_EMAIL }}
+
+      - name: Deploy Infra
+        id: deployapim
+        uses: Azure/arm-deploy@v1.0.1
+        with:        
+          scope: resourcegroup          
+          subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}          
+          region: ${{ env.LOCATION }}        
+          resourceGroupName: ${{ env.resourceGroupName }}        
+          template: bicep/main.json   
+          parameters: bicep/main.parameters.json
+          deploymentMode: Incremental     
