@@ -49,7 +49,8 @@ resource workflowb 'Microsoft.Logic/workflows@2017-07-01' = {
          ]
          openAuthenticationPolicies: {
            policies: {
-             Default: {               
+             Default: {        
+               type: 'AAD'       
                claims: [
                  {
                    name: 'iss'
