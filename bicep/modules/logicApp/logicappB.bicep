@@ -26,6 +26,7 @@ resource workflowb 'Microsoft.Logic/workflows@2019-05-01' = {
            Response: {
              runAfter: {}
              type: 'Response'
+             kind: 'Http'
              inputs: {
                body: {
                  message: 'Hello from Logic App B'
