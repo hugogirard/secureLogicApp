@@ -4,12 +4,6 @@ resource "azurerm_logic_app_workflow" "logicWorkflowA" {
     resource_group_name     = var.rgName
 }
 
-# resource "azurerm_logic_app_workflow" "logicWorkflowb" {
-#     name                    = "logicApp-workflow-b"
-#     location                = var.location
-#     resource_group_name     = var.rgName    
-# }
-
 resource "azurerm_resource_group_template_deployment" "arm_logic_app_b" {
     name                    = "logicApp-workflow-b-deployment"
     resource_group_name     = var.rgName
