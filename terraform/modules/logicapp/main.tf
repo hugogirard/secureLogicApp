@@ -11,8 +11,8 @@ resource "azurerm_logic_app_workflow" "logicWorkflowA" {
 # }
 
 resource "azurerm_resource_group_template_deployment" "arm_logic_app_b" {
-    name                    = azurerm_logic_app_workflow.logicWorkflowb.name
-    resource_group_name     = azurerm_logic_app_workflow.logicWorkflowb.location
+    name                    = "logicApp-workflow-b-deployment"
+    resource_group_name     = var.location
     deployment_mode         = "Incremental"
     template_content        = <<TEMPLATE
     {
