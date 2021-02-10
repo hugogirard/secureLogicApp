@@ -66,12 +66,12 @@ namespace daemon
                 Console.ResetColor();
             }
             
-            // if (result != null)
-            // {
-            //     var httpClient = new HttpClient();
-            //     var apiCaller = new ProtectedApiCallHelper(httpClient);
-            //     await apiCaller.CallWebApiAndProcessResultASync($"{config.TodoListBaseAddress}/api/todolist/all", result.AccessToken, Display);
-            // }
+            if (result != null)
+            {
+                var httpClient = new HttpClient();
+                var apiCaller = new ProtectedApiCallHelper(httpClient);
+                await apiCaller.CallWebApiAndProcessResultASync($"{config.TodoListBaseAddress}/api/todolist/all", result.AccessToken, Display);
+            }
         }
 
         /// <summary>
