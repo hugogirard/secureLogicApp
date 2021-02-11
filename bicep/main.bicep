@@ -13,7 +13,6 @@ param clientId string {
 param secret string {
   secure: true
 }
-param apiPolicy string
 
 module apim './modules/apim/apim.bicep' = {
   name: 'apim'
