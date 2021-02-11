@@ -37,6 +37,8 @@ module apis './modules/apis/apis.bicep' = {
   params: {
     apimName: apim.outputs.apiName
     apiUrl: logicappB.outputs.endpoint
+    audience: audience
+    tenantId: tenantId
   }
 }
 
