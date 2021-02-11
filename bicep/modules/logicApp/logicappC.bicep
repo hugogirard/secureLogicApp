@@ -2,7 +2,7 @@ param location string
 param uri string
 
 resource workflowb 'Microsoft.Logic/workflows@2017-07-01' = {
-   name: 'logicApp-workflow-a'
+   name: 'logicApp-workflow-c'
    location: location
    properties: {
      state: 'Enabled'
