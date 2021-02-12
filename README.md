@@ -9,6 +9,7 @@
     - [5 - Create application Logic App A](#create-logic-app-a)
    - [Step 3: Create Github Secrets](#create-github-secrets)
    - [Step 4: Run the Github Action](#run-the-github-action)
+   - [Step 5: Add APIM Policy](#add-apim-policy)
 
 # About this sample
 
@@ -97,8 +98,6 @@ Click the **New client secret** button and copy the value, you will need it late
 
 Last step is to update the **manifest** file like you did before for this application too.
 
-
-
 ## Create Github Secrets
 
 Now to be able to run the github action that will create all the Azure Resources you will need to create [Github Secrets](https://docs.github.com/en/actions/reference/encrypted-secrets).
@@ -116,7 +115,25 @@ Now to be able to run the github action that will create all the Azure Resources
 
 ## Run the Github Action
 
+Now click the Github action button at the top
 
+<img src='https://github.com/hugogirard/secureLogicApp/blob/main/images/action.png?raw=true' />
+
+Click the deploy infra button
+
+<img src='https://github.com/hugogirard/secureLogicApp/blob/main/images/deploy.png?raw=true' />
+
+Finally click on the run workflow button, this will take ~45 minutes.
+
+<img src='https://github.com/hugogirard/secureLogicApp/blob/main/images/runWorkflow.png?raw=true' />
+
+## Add APIM Policy
+
+Now you will need to add this APIM Policy on the Logic-App API created in APIM.
+
+The policy need to go to the only operation present there.  Replace the value with your tenantId and appId of the logic app b registered in Azure AD.
+
+To understand more about Azure APIM Policy click (here)[https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-policies].
 
 ```xml
 <policies>
@@ -124,7 +141,7 @@ Now to be able to run the github action that will create all the Azure Resources
         <validate-jwt header-name="Authorization" failed-validation-httpcode="401" failed-validation-error-message="Unauthorized. Access token is missing or invalid.">
             <openid-config url="https://login.microsoftonline.com/{{tenantId}}/v2.0/.well-known/openid-configuration" />
             <audiences>
-                <audience>{{appId logic app Azure AD}}</audience>
+                <audience>{{appId logic app B Azure AD}}</audience>
             </audiences>
         </validate-jwt>
     </inbound>
