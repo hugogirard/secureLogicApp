@@ -91,7 +91,13 @@ The last step is to grant admin consent for the added permission by clicking the
 
 <img src='https://github.com/hugogirard/secureLogicApp/blob/main/images/grant.png?raw=true' />
 
+Now you need to create a client secret, just click the **Certificates & secrets** in the left menu.
+
+Click the **New client secret** button and copy the value, you will need it later.
+
 Last step is to update the **manifest** file like you did before for this application too.
+
+
 
 ## Create Github Secrets
 
