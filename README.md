@@ -2,9 +2,13 @@
 - [How to install the application](#how-to-install-this-sample)
   - [Step 1: Fork this repository](#fork-this-repository)
   - [Step 2: Register applications in Azure AD](#register-application-in-azure-ad)
-    - [Create application in Azure AD](#create-app-ad)
-    - [Create application role](#create-app-role)
-    - [Expose application](#expose-application)
+    - [1 - Create application in Azure AD](#create-app-ad)
+    - [2 - Create application role](#create-app-role)
+    - [3 - Expose application](#expose-application)
+    - [4 - Update Manifest file](#update-manifest-file)
+    - [5 - Create application Logic App A](#create-logic-app-a)
+   - [Step 3: Create Github Secrets](#create-github-secrets)
+   - [Step 4: Run the Github Action](#run-the-github-action)
 
 # About this sample
 
@@ -54,13 +58,58 @@ Click at the top the **Set** hyperlink.
 
 <img src='https://github.com/hugogirard/secureLogicApp/blob/main/images/setapp.png?raw=true' />
 
+### Update Manifest file
 Last step is to update the manifest file of the application to use the v2 of the Azure AD endpoint.  Click on the manifest button to the left menu and change the value to 2.
 
 <img src='https://github.com/hugogirard/secureLogicApp/blob/main/images/manifest.png?raw=true' />
 
 If you want to learn more about Azure Active Directory from a developer perspective Microsoft have good documentation [here](https://docs.microsoft.com/en-us/azure/active-directory/develop/).
 
-Now you need to create two more applications in Azure AD 
+Now you need to create one more application in Azure AD 
+
+### Create logic app a
+
+You need to create the application **Logic-App-Workflow-A**, repeat the step **Create App Ad** with the name **Logic-App-Workflow-A**.
+
+Once is done you need to click in the menu Api Permission.
+
+<img src='https://github.com/hugogirard/secureLogicApp/blob/main/images/API Permission.png?raw=true' />
+
+Click the button Add a permission
+
+<img src='https://github.com/hugogirard/secureLogicApp/blob/main/images/add permission.png?raw=true' />
+
+Select **My APIS** and select Logic-App-Workflow-B
+
+<img src='https://github.com/hugogirard/secureLogicApp/blob/main/images/myapis.png?raw=true' />
+
+Select the app role created before
+
+<img src='https://github.com/hugogirard/secureLogicApp/blob/main/images/addApp.png?raw=true' />
+
+The last step is to grant admin consent for the added permission by clicking the grant admin consent.
+
+<img src='https://github.com/hugogirard/secureLogicApp/blob/main/images/grant.png?raw=true' />
+
+Last step is to update the **manifest** file like you did before for this application too.
+
+## Create Github Secrets
+
+Now to be able to run the github action that will create all the Azure Resources you will need to create [Github Secrets](https://docs.github.com/en/actions/reference/encrypted-secrets).
+
+|Secret|Value|
+|--|--|
+|AUDIENCE| ClientID of the Logic-App-Workflow-B in Azure AD
+|CLIENT_ID| ClientID of the Logic-App-Workflow-A in Azure AD
+|PUBLISHER_EMAIL| Your email to receive notification when APIM will be created
+|PUBLISHER_NAME| Your name
+|SECRET| Client Secret created from application Logic-App-Workflow-A
+|SP_AZURE_CREDENTIALS| Follow this link https://github.com/Azure/login to know which value to enter
+|SUBSCRIPTION_ID| The subscription Id where you want to deploy the resources
+|TENANT_ID| The Azure TenantId where you want to deploy the resources.
+
+## Run the Github Action
+
 
 
 ```xml
