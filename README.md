@@ -1,8 +1,10 @@
 - [About this sample](#about-this-sample)
 - [How to install the application](#how-to-install-this-sample)
   - [Step 1: Fork this repository](#fork-this-repository)
-  - [Step 2: Register applications in Azure AD](#register-apps-ad)
+  - [Step 2: Register applications in Azure AD](#register-application-in-azure-ad)
     - [Create application in Azure AD](#create-app-ad)
+    - [Create application role](#create-app-role)
+    - [Expose application](#expose-application)
 
 # About this sample
 
@@ -31,6 +33,7 @@ Go to your Azure Active Directory and in **App Registrations blade**.  From ther
 
 <img src='https://github.com/hugogirard/secureLogicApp/blob/main/images/createApp.png?raw=true' />
 
+### Create App Role
 Once the application is created click the **App role | Preview** button.
 
 <img src='https://github.com/hugogirard/secureLogicApp/blob/main/images/createrole.png?raw=true' />
@@ -38,6 +41,8 @@ Once the application is created click the **App role | Preview** button.
 Enter the information below for the role
 
 <img src='https://github.com/hugogirard/secureLogicApp/blob/main/images/allowTrigger.png?raw=true' />
+
+### Expose Application
 
 Now you need to expose the Application so other Apps can call it using app roles.  We use **client credentials flow** in this example, for more information about this flow click [here](https://docs.microsoft.com/en-us/azure/active-directory/develop/msal-authentication-flows#client-credentials).
 
