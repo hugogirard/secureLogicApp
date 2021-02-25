@@ -27,16 +27,16 @@ resource postOperation 'Microsoft.ApiManagement/service/apis/operations@2017-03-
   }
 }
 
-// resource policyApi 'Microsoft.ApiManagement/service/apis/policies@2020-06-01-preview' = {
-//   name: '${apimName}/logicappb/policy'
-//   dependsOn: [
-//     logicBApi
-//     postOperation
-//   ]
-//   properties: {
-//     value: policy
-//     format: 'xml'
-//   }
-// }
+resource policyApi 'Microsoft.ApiManagement/service/apis/policies@2020-06-01-preview' = {
+  name: '${apimName}/logicappb/policy'
+  dependsOn: [
+    logicBApi
+    postOperation
+  ]
+  properties: {
+    value: '<policies>\r\n  <inbound>\r\n    <validate-jwt header-name="Authorization" failed-validation-httpcode="401" failed-validation-error-message="Unauthorized. Access token is missing or invalid.">\r\n      <openid-config url="https://login.microsoftonline.com/${tenantId}/v2.0/.well-known/openid-configuration" />\r\n      <audiences>\r\n        <audience>${audience}</audience>\r\n      </audiences>\r\n    </validate-jwt>\r\n  </inbound>\r\n  <backend>\r\n    <base />\r\n  </backend>\r\n  <outbound>\r\n    <base />\r\n  </outbound>\r\n  <on-error>\r\n    <base />\r\n  </on-error>\r\n</policies>'
+    format: 'xml'
+  }
+}
 
 output apiPath string = logicBApi.properties.path
